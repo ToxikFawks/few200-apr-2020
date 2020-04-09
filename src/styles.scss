@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+$body-bg: rebeccapurple;
+$enable-rounded: false;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+/* TODO: After you are "done" with your project, go through and pickout
+just the bootstrap things you are using and import just those things. */
