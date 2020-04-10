@@ -1,6 +1,7 @@
 <header class="container-fluid jumbotron">
   <h1>{{title}}</h1>
   <p>By the way, the current count is {{ count$ | async }}</p>
+  <p><small>{{ url$ | async }}</small></p>
 </header>
 <main class="container">
   <app-nav></app-nav>
