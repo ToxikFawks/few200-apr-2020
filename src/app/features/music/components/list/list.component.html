@@ -14,6 +14,14 @@
       <p class="card-text">{{ song.title }} by {{ song.artist}} is on the album
         {{ song.album }} from {{ song.year}}
       </p>
+      <div *ngIf="!song.isTemporary">
+        <a href="#"
+           class="card-link">See Playlists Containing This Song</a>
+        <a href="#"
+           class="card-link">Edit This Song</a>
+        <a href="#"
+           class="card-link">Delete This Song</a>
+      </div>
     </div>
   </div>
 </div>

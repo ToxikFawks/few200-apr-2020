@@ -4,4 +4,5 @@ export interface SongListItemModel {
   artist: string;
   album: string;
   year: number;
+  isTemporary: boolean;
 }

@@ -1,1 +1,37 @@
-<p>entry works!</p>
+<form [formGroup]="songForm"
+      (ngSubmit)="submit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input class="form-control"
+           formControlName="title"
+           name="title">
+    <div class="alert alert-danger"
+         *ngIf="title.invalid && (title.dirty || title.touched)">
+      <p *ngIf="title.errors.required">This is required</p>
+      <p *ngIf="title.errors.maxlength">Too long!</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="artist">Artist</label>
+    <input class="form-control"
+           formControlName="artist"
+           name="artist">
+  </div>
+  <div class="form-group">
+    <label for="album">Album</label>
+    <input class="form-control"
+           formControlName="album"
+           name="album">
+  </div>
+  <div class="form-group">
+    <label for="year">Year</label>
+    <input class="form-control"
+           formControlName="year"
+           type="number">
+  </div>
+  <input type="submit"
+         [disabled]="songForm.invalid"
+         class="btn btn-success"
+         value="Add Song">
+</form>
+<pre> {{ songForm.value | json }} </pre>

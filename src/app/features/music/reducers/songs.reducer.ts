@@ -1,5 +1,6 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { createReducer, Action, createFeatureSelector } from '@ngrx/store';
+import { createReducer, Action, on } from '@ngrx/store';
+import * as actions from '../actions/songs.actions';
 
 export interface SongEntity {
   id: string;
@@ -15,17 +16,17 @@ export interface SongState extends EntityState<SongEntity> {
 
 export const adapter = createEntityAdapter<SongEntity>();
 
-// const initialState = adapter.getInitialState();
-const initialState: SongState = {
-  ids: ['1', '2'],
-  entities: {
-    1: { id: '1', title: 'I Will Survive', artist: 'Gloria Gaynor', album: 'Super Disco Hits', year: 1978 },
-    2: { id: '2', title: 'YMCA', artist: 'Village People', album: 'YMCA Album', year: 1976 }
-  }
-};
+const initialState = adapter.getInitialState();
 
 const reducerFunction = createReducer(
-  initialState
+  initialState,
+  on(actions.loadSongsSucceeded, (cs, a) => adapter.setAll(a.payload, cs)),
+  on(actions.songAdded, (cs, a) => adapter.addOne(a.payload, cs)),
+  on(actions.songAddedSuccessfully, (cs, a) => {
+    const tempState = adapter.removeOne(a.oldId, cs);
+    return adapter.addOne(a.payload, tempState);
+  }),
+  on(actions.songAddedFailure, (cs, a) => adapter.removeOne(a.payload.id, cs))
 );
 
 export function reducer(state: SongState = initialState, action: Action) {

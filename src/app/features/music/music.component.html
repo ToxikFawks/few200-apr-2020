@@ -1,11 +1,18 @@
 <header class="row">
   <h2>My Awesome Music Collection</h2>
 </header>
-<section class="row">
-  <section class="col">
-    <app-entry></app-entry>
+<div *ngIf="featureLoaded$ | async">
+  <section class="row">
+    <section class="col">
+      <app-entry></app-entry>
+    </section>
+    <section class="col">
+      <app-list [model]="songs$ | async"></app-list>
+    </section>
   </section>
-  <section class="col">
-    <app-list [model]="songs$ | async"></app-list>
-  </section>
-</section>
+</div>
+
+<div *ngIf="!(featureLoaded$ | async)">
+  <img src="https://media.giphy.com/media/YPcHIrjwX5RD8rsDlx/giphy.gif"
+       alt="loading">
+</div>

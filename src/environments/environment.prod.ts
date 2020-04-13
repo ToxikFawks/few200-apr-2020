@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  songsUrl: 'http://api.someserver/v1/songs'
 };

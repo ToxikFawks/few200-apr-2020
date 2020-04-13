@@ -7,14 +7,18 @@ import { StoreModule } from '@ngrx/store';
 import { featureName, reducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './effects/app.effects';
-
+import { HttpClientModule } from '@angular/common/http';
+import { SongsEffects } from './effects/songs.effects';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MusicComponent, ListComponent, EntryComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forFeature(featureName, reducers),
-    EffectsModule.forFeature([AppEffects])
+    EffectsModule.forFeature([AppEffects, SongsEffects])
   ],
   exports: [MusicComponent]
 })
