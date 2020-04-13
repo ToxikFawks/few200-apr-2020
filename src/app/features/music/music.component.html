@@ -6,6 +6,6 @@
     <app-entry></app-entry>
   </section>
   <section class="col">
-    <app-list></app-list>
+    <app-list [model]="songs$ | async"></app-list>
   </section>
 </section>
